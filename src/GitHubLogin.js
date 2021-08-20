@@ -36,7 +36,7 @@ class GitHubLogin extends Component {
     const popup = this.popup = PopupWindow.open(
       'github-oauth-authorize',
       `https://github.com/login/oauth/authorize?${search}`,
-      { height: 1000, width: 600 }
+      { height: 1000, width: 800 }
     );
 
     this.onRequest();
