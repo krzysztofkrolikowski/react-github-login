@@ -6,9 +6,12 @@ const onSuccess = response => console.log(response);
 const onFailure = response => console.error(response);
 
 ReactDOM.render(
-  <GitHubLogin clientId=""
+  <GitHubLogin
+    clientId=""
     redirectUri=""
     onSuccess={onSuccess}
-    onFailure={onFailure}/>,
-  document.getElementById('example')
+    onFailure={onFailure}
+    render={({ onClick }) => <button onClick={onClick}>GitHub login</button>}
+  />,
+  document.getElementById('example'),
 );

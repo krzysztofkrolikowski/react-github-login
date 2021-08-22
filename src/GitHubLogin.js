@@ -13,6 +13,7 @@ class GitHubLogin extends Component {
     onRequest: PropTypes.func,
     onSuccess: PropTypes.func,
     onFailure: PropTypes.func,
+    render: PropTypes.func,
     redirectUri: PropTypes.string,
     scope: PropTypes.string,
   }
@@ -24,6 +25,7 @@ class GitHubLogin extends Component {
     onRequest: () => {},
     onSuccess: () => {},
     onFailure: () => {},
+    render: null,
   }
 
   onBtnClick = () => {
@@ -36,13 +38,13 @@ class GitHubLogin extends Component {
     const popup = this.popup = PopupWindow.open(
       'github-oauth-authorize',
       `https://github.com/login/oauth/authorize?${search}`,
-      { height: 1000, width: 800 }
+      { height: 600, width: 600 },
     );
 
     this.onRequest();
     popup.then(
       data => this.onSuccess(data),
-      error => this.onFailure(error)
+      error => this.onFailure(error),
     );
   }
 
@@ -68,6 +70,10 @@ class GitHubLogin extends Component {
 
     if (className) {
       attrs.className = className;
+    }
+
+    if (this.props.render) {
+      return this.props.render({ ...attrs });
     }
 
     return <button {...attrs}>{ children || buttonText }</button>;
